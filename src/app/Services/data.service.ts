@@ -38,7 +38,7 @@ export class DataService {
       this.user = user.username;
      
      console.log(httpOptions);
-     //return this.http.get<Usuario[]>(this.baseurl +'User/'+ this.user,);
+    
 
      return this.http.get(this.baseurl +'User', httpOptions);
       
