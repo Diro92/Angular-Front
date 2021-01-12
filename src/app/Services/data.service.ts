@@ -37,14 +37,13 @@ export class DataService {
       const user:User = JSON.parse(localStorage.getItem('user'));
       this.user = user.username;
      
-     console.log(httpOptions);
     
-
      return this.http.get(this.baseurl +'User', httpOptions);
       
 
   }
- login(model:any){
+ 
+  login(model:any){
 
 
     return this.http.post(this.baseurl +'authentication/login', model).
@@ -63,6 +62,8 @@ export class DataService {
 
     this.currentusersource.next(user);
   }
+
+  º
 
   logout(){
        localStorage.removeItem('user');
