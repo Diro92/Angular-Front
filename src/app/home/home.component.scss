@@ -1,0 +1,24 @@
+
+
+.left{
+
+
+    border:solid none;
+    position: absolute;
+    width: 50%;
+    height: 80%;
+    text-align: center;
+    padding: 1%;
+}
+.right{
+
+
+    border:solid none;
+    position: absolute;
+    width: 50%;
+    height: 80%;
+    left: 50%;
+    text-align: center;
+    padding: 1%;
+    overflow: auto;
+}

@@ -1,0 +1,72 @@
+<div class="general">
+
+    <nav class="Left">
+     
+      <i class="fa fa-plus fa-2x"  (click)="Mostrar()" id="Plus"></i>
+        <table class="table ">
+            <thead>
+              <tr >
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Tareas</th>
+                <th scope="col">Tipo</th>
+                
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of results">
+                <th scope="row">{{item.id}}</th>
+                <td>{{item.name}}</td>
+                <td>{{item.tareas[0].id}}</td>
+                <td>{{item.tipo}}</td>
+               
+                <td>Delete/Edit</td>
+              </tr>
+             
+            </tbody>
+          </table>
+
+    </nav>  
+    <nav class="Right">
+
+      <ul *ngFor="let item of results">
+
+         <h1>User: {{item.name| titlecase }}</h1> 
+
+       
+            <table class="table ">
+              <thead>
+                <tr >
+      
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Tipo</th>
+                  <th scope="col">Duracion</th>
+                  
+            
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let tareas of item.tareas">
+                  <th scope="row">{{tareas.name}}</th>
+                  <th scope="row">{{tareas.tipo}}</th>
+                  <th scope="row">{{tareas.duracion}}</th>
+                 
+                 
+                  <td>Delete/Edit</td>
+                </tr>
+               
+              </tbody>
+            </table>
+
+
+          </ul>
+
+
+    
+    </nav>
+  
+
+
+
+</div>
