@@ -1,4 +1,4 @@
-<div class="general">
+<!-- <div class="general">
 
     <nav class="Left">
      
@@ -69,4 +69,37 @@
 
 
 
+</div> -->
+
+
+
+<!-- /Mark up -->
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+ 
+
+<p class=" font-weight-bold text-center">Your activities: {{ Usuario| titlecase}}</p>
+
+<div 
+     style="margin:0 auto;
+            width: 50%;
+            height: 50%;
+            border: 1px solid black">
+    <div><i class="bi bi-plus-square"></i></div>
+    <div *ngFor="let item of results">
+      <div *ngFor="let tareas of item.tareas">
+
+        <div class="p-3 mb-2 bg-white border text-left"
+            style="margin:0 auto; width: 40%; height: 50%">{{tareas.name}}
+          
+            <i class="bi-alarm" style="font-size: 2rem; color: cornflowerblue;"></i>
+            <i class="fas fa-plus-square fa-2x"></i>
+            <i class="far fa-edit fa-2x"></i>
+        </div>
+          
+
+      </div>
+    </div>
+
 </div>
+

@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { DataService } from '../Services/data.service';
 import { User } from '../_models/user';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-navigation',
@@ -12,38 +13,45 @@ import { User } from '../_models/user';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
-  Usuario:string;
+ 
+  jwtHelper = new JwtHelperService();
+  
   model :any = {};
-  user:User;
+  
+  Usuario:any;
 
 
-  constructor(public Authentication:DataService,private toastr: ToastrService,private route: Router) {
+  constructor (
 
-     this.user=JSON.parse(localStorage.getItem('user'))
-   }
+        public Authentication:DataService,
+        private toastr: ToastrService,
+        private route: Router) {
 
-  ngOnInit(): void {
 
-    if(localStorage.getItem('user')!=null){
       
-      this.Usuario = this.user.username;
+        }
 
-    }}
-
-  form = new FormGroup ({
+   form = new FormGroup ({
 
     username: new FormControl(),
     password: new FormControl()
 
   })
   
+
+
+  ngOnInit(): void {
+
+    
+  }
     login(){
 
         this.Authentication.login(this.form.value).subscribe( response => {
         this.toastr.success('Logged in');
-        this.route.navigateByUrl(('/Home'));
-        this.Usuario = this.user.username
         
+     
+        this.route.navigateByUrl(('/Home'));
+       
       },error=>{   
         
         this.toastr.error(error.error)
@@ -52,10 +60,18 @@ export class NavigationComponent implements OnInit {
     
       logout(){
 
-      this.Authentication.logout();
-      this.toastr.warning('Logged out');
-      this.form.reset();
-      this.route.navigateByUrl(('/'));
+        this.Authentication.logout();
+        this.toastr.warning('Logged out');
+        this.form.reset();
+        this.route.navigateByUrl(('/'));
+      
+        
     }
+
+    loggedIn() {
+      
+      const token = localStorage.getItem('token');
+      return !this.jwtHelper.isTokenExpired(token);
+  }
   
 }

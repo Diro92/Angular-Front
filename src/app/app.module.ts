@@ -5,14 +5,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActividadesComponent } from './actividades/actividades.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavigationComponent } from './navigation/navigation.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CrudActividadComponent } from './crud-actividad/crud-actividad.component';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from './home/home.component';
-import { PresentationComponent } from './presentation/presentation.component';
+import { errorMonitor } from 'events';
+import { JwtInterceptor } from '@auth0/angular-jwt';
+import { ErrorInterceptorProvider } from './Interceptors/jwt.interceptor';
+// import { BrowserModule } from '@angular/platform-browser';
+// import { NgModule } from '@angular/core';
+
+// import { AppComponent } from './app.component';
+// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -21,7 +28,7 @@ import { PresentationComponent } from './presentation/presentation.component';
     NavigationComponent,
     CrudActividadComponent,
     HomeComponent,
-    PresentationComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -31,15 +38,23 @@ import { PresentationComponent } from './presentation/presentation.component';
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
+ 
     ToastrModule.forRoot({
 
-      positionClass:'toast-bottom-right'
+      positionClass:'toast-bottom-center'
     })
    
   ],
   
   exports: [ MatDialogModule],
-  providers: [],
+
+  providers: [
+
+    
+    ErrorInterceptorProvider
+
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,85 +5,58 @@ import { ReplaySubject } from 'rxjs';
 import {map} from 'rxjs/operators';
 import { User } from '../_models/user';
 import { Usuario } from '../Interfaces/Usuario';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
-
-const httpOptions = {
-
-
-  headers: new HttpHeaders({
-
-   Authorizacion:'Bearer '+ JSON.parse(localStorage.getItem('user')).token
-
-  })
-}
 
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class DataService {
 
   private currentusersource = new ReplaySubject<User>(1);
   currentuser$ = this.currentusersource.asObservable();
+  jwtHelper = new JwtHelperService();
+  Usuario:any
+  decodedToken: any;
   baseurl='http://localhost:5001/api/';
   
-  user:string;
-  constructor(private http: HttpClient) {
+  user:any;
+  constructor(private http: HttpClient) {}
+        login(model:any){
 
-   
-  }
+           return this.http.post(this.baseurl +'authentication/login', model).
 
-  Showdata(){
+            pipe( map(( response: User )=>{
+                const user = response;
+                if(user){
 
-      const user:User = JSON.parse(localStorage.getItem('user'));
-      this.user = user.username;
-     
-    
-     return this.http.get(this.baseurl +'User', httpOptions);
-      
+                   localStorage.setItem('user',JSON.stringify(user));
 
-  }
- 
-  login(model:any){
+                    this.decodedToken = this.jwtHelper.decodeToken(user.token);
+                   
+                  
+                    this.currentusersource.next(user)
+                    return user;
+                  }
+            }) );
+        }
 
+        setcurrentUser(user:User){
 
-    return this.http.post(this.baseurl +'authentication/login', model).
-      pipe( map(( response: User )=>{
-          const user = response;
-          if(user){
+          this.currentusersource.next(user);
+        }
 
-              localStorage.setItem('user',JSON.stringify(user));
-              this.currentusersource.next(user)
-              return user;
-            }
-      }) );
-  }
+        
 
-  setcurrentUser(user:User){
-
-    this.currentusersource.next(user);
-  }
-
-  º
-
-  logout(){
-       localStorage.removeItem('user');
-       this.currentusersource.next(null);
-  }
-
-  Getuser(){
-
-    return this.http.get(this.baseurl + 'auth/');
-  }
+        logout(){
+            localStorage.removeItem('user');
+            this.currentusersource.next(null);
+            this.Usuario = undefined;
+             
+        }
 
 
-
-
-
-  //// Any other Data
-
-  GetInformation(){
-
-    return this.http.get('https://www.breakingbadapi.com/api/characters');
-  }
 
 }
