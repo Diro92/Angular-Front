@@ -1,28 +1,35 @@
-<!-- 
-<h1 class="text-center mt-4" >Here you find new on your tasks {{user | titlecase}}</h1>
 
 
-<div class="left">
-    
-    Last reviewed
-    
-        <ul class="list-group" *ngFor="let item of results">
+<div class="w-75 border border-dark border-0 p-3 m-auto ">
 
-            <ul *ngFor="let items of item.tareas">
+    <div class="alert alert-success w-50 text-center m-auto" role="alert" *ngIf="(Data.currentuser$ | async )as user">
+       Welcome {{user.username | titlecase }} to the Task App Application
+      </div>
+    <div class="container border border-1 mt-1">
+        <div class="row">
+            <div class="col-lg-9 col-md-5 col-sm-6 border border-1 border-primary overflow-auto" style="height: 800px;">
+                    <div *ngFor="let item of results.slice(0,1)">
+                        
+                        <div class="card">
+                            <img src="{{item.img}}" width="50" height="500" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title">{{item.name}}</h5>
+                              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>   
+                    
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 border border-1 border-success">
+                <h1 class="text-center">Twitter news</h1>
+            </div>
 
-                    <li class="list-group-item list-group-item-action">{{items.name}}</li>
+        </div>
 
-             </ul>
-        </ul>
+    </div> 
+
+
+
 
 </div>
-<div class="right">
-
-
-
-</div>
-
- -->
-
-
- <p>Here is Home</p>

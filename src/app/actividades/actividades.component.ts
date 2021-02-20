@@ -10,10 +10,14 @@ import { UserActividadesService } from '../Services/user-actividades.service';
   styleUrls: ['./actividades.component.scss']
 })
 export class ActividadesComponent implements OnInit {
+
   results:any;
+  results2:any;
   Usuario: String;
   
-   constructor(private Authentication:UserActividadesService,  public dialog: MatDialog) { }
+   constructor(public Authentication:UserActividadesService, 
+     public dialog: MatDialog,
+     public Data:DataService) { }
 
   ngOnInit(): void {
 
@@ -21,7 +25,17 @@ export class ActividadesComponent implements OnInit {
     this.Authentication.Showdata().subscribe( Response =>{
  
          this.results = Response;
+         console.log(this.results)
+         
+      
     });
+
+    this.Authentication.ShowUsers().subscribe( Response =>{
+ 
+      this.results2 = Response;
+      
+   
+ });
   }
    
    Mostrar() {

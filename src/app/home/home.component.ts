@@ -9,12 +9,27 @@ import { User } from '../_models/user';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  results: any;
 
  
 
 
-  constructor(private Data:UserActividadesService,private Authentication:DataService) { }
+  constructor(public Data:DataService,private Authentication:UserActividadesService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+
+    this.Authentication.ShowInfo().subscribe( Response =>{
+ 
+      this.results = Response;
+     
+   
+ });
+    
+
+  }
+
+
+
 
 }

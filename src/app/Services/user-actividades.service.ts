@@ -4,14 +4,6 @@ import { User } from '../_models/user';
 
 
 
-// const httpOptions = {
-//    headers: new HttpHeaders({
-//           Authorizacion:'Bearer '+ JSON.parse(localStorage.getItem('user'))?.token
-//    })}
-
-const headers=new HttpHeaders().
-            set('Authorization','Bearer '+ JSON.parse(localStorage.getItem('user'))?.token)
-
 
 
 
@@ -25,7 +17,7 @@ export class UserActividadesService implements OnInit {
 
   user:any;
   baseurl='http://localhost:5001/api/';
-  
+  InforApi = 'https://www.breakingbadapi.com/api/'
   
   constructor(private http: HttpClient) { 
 
@@ -43,8 +35,21 @@ export class UserActividadesService implements OnInit {
     const user = JSON.parse(localStorage.getItem('user'))?.username
 
     
-    return this.http.get(this.baseurl +'User/'+ user,{'headers': headers}); 
+    return this.http.get(this.baseurl +'User/'+ user); 
 
+  }
+  ShowUsers(){    
+
+    const user = JSON.parse(localStorage.getItem('user'))?.username
+
+    
+    return this.http.get(this.baseurl +'User/'); 
+
+  }
+
+  ShowInfo(){
+
+    return this.http.get(this.InforApi+'characters')
   }
 
 }

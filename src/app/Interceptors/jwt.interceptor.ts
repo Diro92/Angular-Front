@@ -39,9 +39,3 @@ export class JwtInterceptor implements HttpInterceptor {
   }
 }
 
-
-export const ErrorInterceptorProvider = {
-  provide: HTTP_INTERCEPTORS,
-  useClass: JwtInterceptor,
-  multi: true
-};

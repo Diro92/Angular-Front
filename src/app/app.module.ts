@@ -13,8 +13,10 @@ import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from './home/home.component';
 import { errorMonitor } from 'events';
-import { JwtInterceptor } from '@auth0/angular-jwt';
-import { ErrorInterceptorProvider } from './Interceptors/jwt.interceptor';
+import { JwtInterceptor,JWT_OPTIONS   } from '@auth0/angular-jwt';
+
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './Interceptors/loading.interceptor';
 // import { BrowserModule } from '@angular/platform-browser';
 // import { NgModule } from '@angular/core';
 
@@ -38,11 +40,13 @@ import { ErrorInterceptorProvider } from './Interceptors/jwt.interceptor';
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
- 
+    
     ToastrModule.forRoot({
 
       positionClass:'toast-bottom-center'
-    })
+    }),
+ 
+    NgxSpinnerModule
    
   ],
   
@@ -51,7 +55,10 @@ import { ErrorInterceptorProvider } from './Interceptors/jwt.interceptor';
   providers: [
 
     
-    ErrorInterceptorProvider
+    // ErrorInterceptorProvider,
+
+    {provide:HTTP_INTERCEPTORS, useClass:LoadingInterceptor, multi:true},
+    {provide:JWT_OPTIONS  , useClass:JwtInterceptor, multi:true}
 
 
   ],
