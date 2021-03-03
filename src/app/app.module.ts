@@ -55,10 +55,9 @@ import { LoadingInterceptor } from './Interceptors/loading.interceptor';
   providers: [
 
     
-    // ErrorInterceptorProvider,
-
-    {provide:HTTP_INTERCEPTORS, useClass:LoadingInterceptor, multi:true},
-    {provide:JWT_OPTIONS  , useClass:JwtInterceptor, multi:true}
+     {provide:HTTP_INTERCEPTORS, useClass:LoadingInterceptor, multi:true},
+    {provide:HTTP_INTERCEPTORS, useClass:JwtInterceptor, multi:true}
+  
 
 
   ],

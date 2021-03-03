@@ -14,6 +14,7 @@ export class ActividadesComponent implements OnInit {
   results:any;
   results2:any;
   Usuario: String;
+ 
   
    constructor(public Authentication:UserActividadesService, 
      public dialog: MatDialog,
@@ -25,15 +26,14 @@ export class ActividadesComponent implements OnInit {
     this.Authentication.Showdata().subscribe( Response =>{
  
          this.results = Response;
-         console.log(this.results)
-         
-      
+       
+        
     });
 
     this.Authentication.ShowUsers().subscribe( Response =>{
  
       this.results2 = Response;
-      
+    
    
  });
   }

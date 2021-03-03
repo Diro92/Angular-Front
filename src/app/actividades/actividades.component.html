@@ -11,52 +11,35 @@
       Your activities {{ user.username| titlecase}}
     </div>
 
-    <div class="container">
-      
-    
-      <div class="row text-center" *ngFor="let item of results">
+    <div class="container" >
+      <div class="row text-center" >
 
-        <div class="card border-info mb-3 ml-1 mt-3" style="max-width: 18rem;"  *ngFor="let tareas of item.tareas">
-          <div class="card-header">{{tareas.name}}</div>
-          <div class="card-body text-dark">
-            <h5 class="card-title">{{tareas.tipo}}</h5>
-            <p class="card-text">Here What goes is the update for the last thing done. It has to be updated
-               whenever we do something that can be tracked as a new progess  
-            </p>
-            <p class="text-muted">Actions</p>
-
-            <hr>
-            <div class="container">
-              <div class="row">
-              <div class="col sm-4"><i class="fas fa-search" ></i></div>
-              <div class="col sm-4"><i class="fas fa-edit"></i></div>
-              <div class="col sm-4"><i class="fas fa-trash"></i></div>
+          <div class="card border-info mb-3 ml-1 mt-3" style="max-width: 18rem;" *ngFor="let item of results?.tareas" >
+            <div class="card-header">{{item?.name}}</div>
+            <div class="card-body text-dark">
+              <h5 class="card-title">{{item?.tipo}}</h5>
+              <p class="card-text">Here What goes is the update for the last thing done. It has to be updated
+                whenever we do something that can be tracked as a new progess  
+              </p>
+              <hr>
+              <p class="text-muted">Actions</p>
+              <div class="container">
+                <div class="row">
+                <div class="col sm-4"><i class="fas fa-search" ></i></div>
+                <div class="col sm-4"><i class="fas fa-edit"></i></div>
+                <div class="col sm-4"><i class="fas fa-trash"></i></div>
+              </div>
             </div>
-            </div>
-            
-            
           </div>
         </div>
-      
       </div>
     </div>
-
-    
-
-     
-    </div> 
-
-   
-
-     
-      <div class="col-sm-6
+  </div> 
+  <div class="col-sm-6
            col-md-6
            col-lg-6" 
            style="border: 1px solid red">
-
-      </div>
-
-  
+  </div>
 </div>
 <footer
     class="w-75 p-3 fixed-bottom m-auto text-dark bg-light text-center"

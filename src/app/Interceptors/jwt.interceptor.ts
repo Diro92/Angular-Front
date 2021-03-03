@@ -20,7 +20,7 @@ export class JwtInterceptor implements HttpInterceptor {
     
     let CurrentUser:User;
 
-    this.Authentication.currentuser$.pipe(take(1)).subscribe(user =>CurrentUser =user);
+    this.Authentication.currentuser$.pipe(take(1)).subscribe(user =>CurrentUser=user);
 
     if(CurrentUser){
 
