@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { DataService } from '../Services/data.service';
 import { User } from '../_models/user';
-import { JwtHelperService } from '@auth0/angular-jwt';
+
 
 @Component({
   selector: 'app-navigation',
@@ -14,27 +14,19 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class NavigationComponent implements OnInit {
  
-  jwtHelper = new JwtHelperService();
-  
   model :any = {};
   
-  Usuario:any;
 
 
   constructor (
 
         public Authentication:DataService,
         private toastr: ToastrService,
-        private route: Router) {
+        private route: Router) {}
 
-
-      
-        }
-
-   form = new FormGroup ({
-
-    username: new FormControl(),
-    password: new FormControl()
+      form = new FormGroup ({
+      username: new FormControl(),
+      password: new FormControl()
 
   })
   
@@ -48,14 +40,13 @@ export class NavigationComponent implements OnInit {
 
         this.Authentication.login(this.form.value).subscribe( response => {
         this.toastr.success('Logged in');
-        
-     
         this.route.navigateByUrl(('/Home'));
        
       },error=>{   
         
-        this.toastr.error(error.error)
+             this.toastr.error(error.error)
        });
+      
       }
     
       logout(){
@@ -65,13 +56,8 @@ export class NavigationComponent implements OnInit {
         this.form.reset();
         this.route.navigateByUrl(('/'));
       
-        
-    }
+      }
 
-    loggedIn() {
-      
-      const token = localStorage.getItem('token');
-      return !this.jwtHelper.isTokenExpired(token);
-  }
+
   
 }

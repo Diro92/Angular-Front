@@ -5,7 +5,7 @@ import { ReplaySubject } from 'rxjs';
 import {map} from 'rxjs/operators';
 import { User } from '../_models/user';
 import { Usuario } from '../Interfaces/Usuario';
-import { JwtHelperService } from '@auth0/angular-jwt';
+
 
 
 @Injectable({
@@ -17,7 +17,7 @@ export class DataService {
 
   private currentusersource = new ReplaySubject<User>(1);
   currentuser$ = this.currentusersource.asObservable();
-  jwtHelper = new JwtHelperService();
+
   Usuario:any
   decodedToken: any;
   baseurl='http://localhost:5001/api/';
@@ -33,12 +33,8 @@ export class DataService {
                 if(user){
 
                    localStorage.setItem('user',JSON.stringify(user));
-
-                    this.decodedToken = this.jwtHelper.decodeToken(user.token);
-                   
-                  
-                    this.currentusersource.next(user)
-                    return user;
+                   this.currentusersource.next(user)
+                  return user;
                   }
             }) );
         }
@@ -53,7 +49,7 @@ export class DataService {
         logout(){
             localStorage.removeItem('user');
             this.currentusersource.next(null);
-            this.Usuario = undefined;
+           
              
         }
 

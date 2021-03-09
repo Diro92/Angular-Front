@@ -13,10 +13,11 @@ import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from './home/home.component';
 import { errorMonitor } from 'events';
-import { JwtInterceptor,JWT_OPTIONS   } from '@auth0/angular-jwt';
+
 
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './Interceptors/loading.interceptor';
+import { JwtInterceptor } from './Interceptors/jwt.interceptor';
 // import { BrowserModule } from '@angular/platform-browser';
 // import { NgModule } from '@angular/core';
 
@@ -56,7 +57,7 @@ import { LoadingInterceptor } from './Interceptors/loading.interceptor';
 
     
      {provide:HTTP_INTERCEPTORS, useClass:LoadingInterceptor, multi:true},
-    {provide:HTTP_INTERCEPTORS, useClass:JwtInterceptor, multi:true}
+     {provide:HTTP_INTERCEPTORS, useClass:JwtInterceptor, multi:true}
   
 
 
