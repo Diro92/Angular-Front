@@ -21,7 +21,7 @@ export class BusyService {
     this.spinnerService.show(undefined,{
 
 
-      type:'timer',
+      type:'ball-scale-multiple',
       bdColor:'rgba(255,255,255,0)',
       color:'black'
     })
