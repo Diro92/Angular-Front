@@ -9,39 +9,39 @@ import {map} from 'rxjs/operators';
 
 export class UserActividadesService implements OnInit {
 
-  Task:Tareas[] = []
+  Task:Tareas[] = [];
 
   user:any;
   baseurl='http://localhost:5001/api/';
   InforApi = 'https://www.breakingbadapi.com/api/'
   
-  constructor(private http: HttpClient) { 
-
-
-   
-  }
-  ngOnInit(): void {
-
-
-    
-  }
+  constructor(private http: HttpClient) {}
+  ngOnInit(): void {}
 
   Showdata(){    
 
     const user = JSON.parse(localStorage.getItem('user'))?.username
 
-    if(this.Task.length>0) return of(this.Task)
+    
+    if(this.Task.length > 0) return of(this.Task)
+
+    console.log(this.Task.length);
     
     return this.http.get<Tareas[]>(this.baseurl +'User/'+ user).pipe(
-
-      map(tareas => {
+      
+      map( tareas => {
 
         this.Task = tareas
+     //   console.log("this is the task" + tareas);
         return tareas;
+
       })
     ) 
 
   }
+
+
+
   ShowUsers(){    
 
     const user = JSON.parse(localStorage.getItem('user'))?.username

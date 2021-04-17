@@ -23,29 +23,26 @@ export class ActividadesComponent implements OnInit {
      public Data:DataService) { }
 
   ngOnInit(): void {
-    
-   
-      this.Task$ = this.Authentication.Showdata();
-      console.log(this.Task$)
-    
-    this.Authentication.Showdata().subscribe( Response =>{
- 
-         this.results = Response;
-       
-});
 
-    this.Authentication.ShowUsers().subscribe( Response =>{
- 
-      this.results2 = Response;
+      this.Task$ = this.Authentication.Showdata();
+
+      //console.log(this.Task$)
     
-   
- });
-  }
-   
-   Mostrar() {
-     
-    const dialogRef = this.dialog.open(CrudActividadComponent);
+    // this.Authentication.Showdata().subscribe( Response =>{
+ 
+    //      this.results = Response;
+    // });
+
+    // this.Authentication.ShowUsers().subscribe( Response =>{
+ 
+    //   this.results2 = Response;
+    // });
    }
+   
+  //  Mostrar() {
+     
+  //   const dialogRef = this.dialog.open(CrudActividadComponent);
+  //  }
 
 
 }
