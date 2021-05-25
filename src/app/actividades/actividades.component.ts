@@ -13,8 +13,8 @@ import { Tareas } from '../_models/tareas';
 })
 export class ActividadesComponent implements OnInit {
 
-  results:any;
-  results2:any;
+  //results:any;
+  //results2:any;
   
   Task$:Observable<Tareas []>;
   
@@ -25,6 +25,10 @@ export class ActividadesComponent implements OnInit {
   ngOnInit(): void {
 
       this.Task$ = this.Authentication.Showdata();
+
+
+      
+      // console.log(this.Task$);
 
       //console.log(this.Task$)
     

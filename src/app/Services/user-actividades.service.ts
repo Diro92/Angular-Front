@@ -22,22 +22,23 @@ export class UserActividadesService implements OnInit {
 
     const user = JSON.parse(localStorage.getItem('user'))?.username
 
-    
-    if(this.Task.length > 0) return of(this.Task)
-
     console.log(this.Task.length);
-    
+
+    if(this.Task.length > 0) return of(this.Task)
     return this.http.get<Tareas[]>(this.baseurl +'User/'+ user).pipe(
       
       map( tareas => {
 
-        this.Task = tareas
-     //   console.log("this is the task" + tareas);
+        this.Task = tareas;
+
+        //console.log(this.Task);
+        //console.log(this.Task.length);
+
+
+         
         return tareas;
 
-      })
-    ) 
-
+      })) 
   }
 
 
